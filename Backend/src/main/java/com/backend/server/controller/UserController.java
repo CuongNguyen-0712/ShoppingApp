@@ -1,22 +1,24 @@
 package com.backend.server.controller;
 
 import com.backend.server.dto.UserDTO;
+import com.backend.server.entity.User;
 import com.backend.server.service.UserService;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/user")
+@RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
 
-    public UserController(UserService userService){
-        this.userService = userService;
+    @PostMapping("/signIn")
+    public UserDTO findUser(@RequestBody User data){
+        return userService.getUser(data);
     }
 
-    @GetMapping
-    public List<UserDTO> getAllUser(){
-        return userService.getAllUser();
+    @PostMapping("/signUp")
+    public String createUser(@RequestBody User data){
+        return userService.setUser(data);
     }
 }
