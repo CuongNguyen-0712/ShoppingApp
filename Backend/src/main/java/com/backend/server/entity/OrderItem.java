@@ -1,5 +1,8 @@
 package com.backend.server.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,20 +13,21 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class OrderItem {
+    @EmbeddedId
+    private OrderItemId orderId;
 
-    @Id
-    @Column(name = "id_order", length = 10)
-    private String idOrder;
+    private int quantity;
 
     @ManyToOne
-    @JoinColumn(name = "id_order", insertable = false, updatable = false)
+    @MapsId("idOrder")
+    @JoinColumn(name = "id_order")
+    @JsonBackReference
     private Order order;
 
     @ManyToOne
-    @JoinColumn(name = "id_product")
+    @MapsId("idProductVariant")
+    @JoinColumn(name = "id_product_variant")
+    @JsonManagedReference
     private ProductVariant productVariant;
-
-    private int quantity;
-    private String unitPrice;
 }
 

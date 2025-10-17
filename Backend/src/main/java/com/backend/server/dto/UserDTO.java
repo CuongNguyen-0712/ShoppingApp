@@ -2,8 +2,6 @@ package com.backend.server.dto;
 
 import lombok.*;
 
-import java.time.LocalDateTime;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,6 +12,4 @@ public class UserDTO {
     private String name;
     private String phone;
     private String address;
-    private LocalDateTime createAt;
-    private LocalDateTime updateAt;
 }

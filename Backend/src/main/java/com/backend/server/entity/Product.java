@@ -22,10 +22,16 @@ public class Product {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Column(name = "category_id", length = 10)
-    private String categoryId;
+    @Column(length = 10)
+    private String category;
 
-    private String status;
+    public enum Status {
+        ACTIVE, INACTIVE
+    }
+    @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "ENUM('ACTIVE','INACTIVE')")
+    private Status status;
+
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 

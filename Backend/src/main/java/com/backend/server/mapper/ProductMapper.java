@@ -14,7 +14,7 @@ public class ProductMapper {
                 .id(product.getId())
                 .name(product.getName())
                 .description(product.getDescription())
-                .categoryId(product.getCategoryId())
+                .category(product.getCategory())
                 .status(product.getStatus())
                 .variants(toVariantDTOList(product.getVariants()))
                 .build();
@@ -29,8 +29,8 @@ public class ProductMapper {
 
      public static ProductVariantDTO toVariantDTO(ProductVariant variant) {
         return ProductVariantDTO.builder()
-                .skuId(variant.getSkuId())
-                .skuCode(variant.getSkuCode())
+                .id_product_variant(variant.getIdProductVariant())
+                .code_product_variant(variant.getCodeProductVariant())
                 .color(variant.getColor())
                 .size(variant.getSize())
                 .quantity(variant.getQuantity())
