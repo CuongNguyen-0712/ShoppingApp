@@ -1,6 +1,8 @@
 package com.backend.server.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
@@ -17,19 +19,18 @@ public class Cart {
     private CartId id;
 
     private int quantity;
-    private String unitPrice;
     private LocalDateTime createdAt;
 
     @ManyToOne
     @MapsId("userId")
     @JoinColumn(name = "id_user")
-    @JsonIgnore
+    @JsonBackReference
     private User user;
 
     @ManyToOne
     @MapsId("productVariantId")
-    @JoinColumn(name = "id_product")
-    @JsonIgnore
+    @JoinColumn(name = "id_product_variant")
+    @JsonManagedReference
     private ProductVariant productVariant;
 }
 

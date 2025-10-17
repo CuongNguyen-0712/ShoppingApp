@@ -1,8 +1,12 @@
 package com.backend.server.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,15 +19,16 @@ import java.util.List;
 public class ProductVariant {
 
     @Id
-    @Column(name = "sku_id", length = 10)
-    private String skuId;
+    @Column(name = "id_product_variant", length = 50, nullable = false)
+    private String idProductVariant;
 
     @ManyToOne
-    @JoinColumn(name = "spu_id", nullable = false)
+    @JoinColumn(name = "id_product", nullable = false)
+    @JsonBackReference
     private Product product;
 
     @Column(unique = true, nullable = false)
-    private String skuCode;
+    private String codeProductVariant;
 
     @Column(nullable = false)
     private String color;
@@ -34,8 +39,8 @@ public class ProductVariant {
     @Column(nullable = false)
     private int quantity;
 
-    @Column(nullable = false)
-    private String price;
+    @Column(name = "price", nullable = false)
+    private BigDecimal price;
 
     @Column(columnDefinition = "TEXT")
     private String imageUrl;
@@ -43,11 +48,11 @@ public class ProductVariant {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    // Relationships
     @OneToMany(mappedBy = "productVariant", cascade = CascadeType.ALL)
-    @JsonIgnore
+    @JsonBackReference
     private List<Cart> carts;
 
     @OneToMany(mappedBy = "productVariant", cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<OrderItem> orderItems;
 }
