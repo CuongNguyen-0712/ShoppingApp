@@ -2,11 +2,6 @@
 
 ## Frontend
 
-Trước tiên nhớ chạy câu lệnh: npm install (thường có mấy quản lí thư viên khác nhưng lỡ xài npm rồi).
-Sau đó chạy lệnh: npm run dev (start server ở chế độ development, với vite là localhost:5173).
-Folder thế nào thì thảo luận trước với nhau ròi làm nhé.
-Nếu có thêm các thư viện hỗ trợ thì có cài thêm.
-
 ## Backend
 
 Chắc cần cài thêm môi trường SDK java để chạy backend( với text editor như VSCode, ...).
