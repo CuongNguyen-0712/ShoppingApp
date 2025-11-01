@@ -1,11 +1,5 @@
 package app.com.shoppingapp.controller;
 
-import app.com.shoppingapp.dto.ProductDTO;
-import app.com.shoppingapp.dto.UserToSignIn;
-import app.com.shoppingapp.service.ProductService;
-import app.com.shoppingapp.service.AuthService;
-import jakarta.servlet.http.HttpSession;
-import lombok.RequiredArgsConstructor;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -15,7 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import app.com.shoppingapp.dto.ProductDTO;
+import app.com.shoppingapp.dto.UserToSignIn;
+import app.com.shoppingapp.service.AuthService;
 import app.com.shoppingapp.service.ProductService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -27,9 +24,9 @@ public class PageController {
 
     @GetMapping("/home")
     public String homePage(Model model){
-        // List<ProductDTO> products = productService.get();
+        List<ProductDTO> products = productService.get();
 
-        // model.addAttribute("products", products);
+        model.addAttribute("products", products);
 
         return "home";
     }
@@ -37,16 +34,6 @@ public class PageController {
     @GetMapping("/layout")
     public String layoutPage(){
         return "layout";
-    }
-
-    @GetMapping("/layoutProduct")
-    public String layoutProductPage(Model model){
-
-        List<ProductDTO> products = productService.get();
-
-        model.addAttribute("products", products);
-
-        return "layoutProduct";
     }
 
     @GetMapping("/admin")
@@ -94,4 +81,38 @@ public class PageController {
         session.invalidate();
         return "redirect:/admin/login";
     }
+
+        @GetMapping("/about")
+    public String aboutPage(){
+        return "about";
+    }
+
+    @GetMapping("/layoutInfo")
+    public String layoutInfoPage(){
+        return "layoutInfo";
+    }
+
+    @GetMapping("/info")
+    public String infoPage(){
+        return "info";
+    }
+
+    @GetMapping("/product")
+    public String productPage(Model model){
+        List<ProductDTO> products = productService.get();
+
+        model.addAttribute("products", products);
+
+        return "product";
+    }
+
+    @GetMapping("/productDetails")
+    public String productDetailsPage(Model model){
+        List<ProductDTO> products = productService.get();
+
+        model.addAttribute("products", products);
+
+        return "productDetails";
+    }
+
 }

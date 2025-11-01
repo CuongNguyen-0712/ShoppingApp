@@ -47,6 +47,7 @@
     width: 25%;
     padding-left: 5px;     /*khoảng cách theo 12 column grid giữa mỗi cột là 24px (PC)*/
     padding-right: 5px;
+    padding-bottom: 25px;
 }
 
 a{
