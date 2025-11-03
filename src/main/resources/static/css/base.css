@@ -10,9 +10,33 @@
     src: url(../font/Quicksand-VariableFont_wght.ttf);
 }
 
+/* animation */
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+    }
+
+    to{
+        opacity: 1;
+    }
+}
+
+@keyframes growth{
+    from{
+       transform: scale(var(--growth-form));    /*scale là độ lớn lên, phóng to hoặc thu nhỏ*/
+    }
+
+    to{
+        transform: scale(var(--growth-to));
+    }
+}
+
+
 :root{
     --white-color: #fff;
     --black-color: #000;
+    --gray-light-color: #F3F4F6;
+    --gray-color: #d3d3d3;
     --border-color: #d1d1d1;
 }
 
@@ -71,4 +95,14 @@ ul,
 li{
     list-style: none;
     padding: 0;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
 }
