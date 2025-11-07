@@ -22,7 +22,9 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Controller
-public class PageController {
+public class PageController extends BaseAdminController{
+
+    private static final String ADMIN_DASHBOARD_URL = "redirect:/admin/dashboard";
 
     private final ProductService productService;
     private final AuthService authService;
@@ -47,7 +49,7 @@ public class PageController {
 
     @GetMapping("/admin")
     public String adminRoot() {
-        return "redirect:/admin/login";
+        return ADMIN_LOGIN_URL;
     }
 
     @GetMapping("/admin/login")
@@ -65,25 +67,16 @@ public class PageController {
         req.setPassword(password);
 
         if (authService.authenticateAdmin(req)) {
-            session.setAttribute("isAdmin", true);
-            return "redirect:/admin/home";
+            session.setAttribute(AUTH_SESSION_KEY, true);
+            session.setAttribute("username", username); // Lưu username vào session
+            return ADMIN_DASHBOARD_URL;
         } else {
-            session.removeAttribute("isAdmin");
+            session.removeAttribute(AUTH_SESSION_KEY);
             model.addAttribute("loginError", "Wrong username or password");
             return "admin/login";
         }
     }
 
-    @GetMapping("/admin/home")
-    public String adminHome(Model model, HttpSession session) {
-        Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
-        if (isAdmin == null || !isAdmin) {
-            return "redirect:/admin/login";
-        }
-        List<ProductDTO> products = productService.get();
-        model.addAttribute("products", products);
-        return "admin/home";
-    }
 
     @GetMapping("/admin/product")
     public String adminProduct(Model model){
@@ -110,7 +103,7 @@ public class PageController {
     @GetMapping("/admin/logout")
     public String adminLogout(HttpSession session) {
         session.invalidate();
-        return "redirect:/admin/login";
+        return ADMIN_LOGIN_URL;
     }
 
     @GetMapping("/about")

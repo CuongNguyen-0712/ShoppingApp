@@ -82,4 +82,11 @@ public class ProductService {
             return "Something is wrong" + e.getMessage();
         }
     }
+    public long count(){
+        return productRepository.count();
+    }
+
+    public List<Object[]> countByCategory(){
+        return productRepository.countByCategory();
+    }
 }
