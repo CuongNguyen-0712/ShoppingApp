@@ -91,13 +91,6 @@ body {
     color: var(--black-color);
     font-weight: 600;
     margin: 0 5px;
-    transition: 0.2s all ease;
-}
-
-.pd__size-btn.active{
-    background: var(--black-color);
-    color: var(--white-color);
-    transition: 0.2s all ease;
 }
 
 .pd__quantity{
@@ -142,7 +135,7 @@ body {
 }
 
 .db__img-item{
-    width: 400px;
+    width: 400;
     height: 350px;
 }
 
@@ -178,26 +171,4 @@ body {
 
 .describe__heading{
     margin-left: 344px;
-}
-
-/* PC responsive */
-@media(min-width: 1024px) and (max-width: 1439px){
-
-  .describe__heading {
-        margin-left: 98px;
-    }
-
-}
-
-
-/* Tablet */
-@media(min-width: 740px) and (max-width: 1023px){
-
-   .describe__heading {
-        margin-left: 74px;
-    }   
-
-    .pd__wrap{
-        margin: 50px 30px;
-    }
 }
