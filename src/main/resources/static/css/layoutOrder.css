@@ -7,6 +7,7 @@
 .order__content{
   width: 100%;
 }
+
 .order__wrap {
   display: flex;
   margin-left: 200px;
@@ -70,6 +71,10 @@
 /* CSS CÁC TRANG CON */
 .order__new {
   width: 100%;
+  border: 1px solid var(--gray-color);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 0 5px var(--gray-color);
   margin-bottom: 50px;
 }
 .order__category {

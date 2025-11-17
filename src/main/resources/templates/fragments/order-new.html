@@ -25,8 +25,10 @@
               Số lượng:
               <span th:text="${item.quantity}"></span>
             </p>
-            <p th:text="${item.price}"></p>
+            <p th:text="${#numbers.formatDecimal(item.price, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></p>
           </div>
+        </div>
+      </div>
           <div class="order__wrapper">
             <p>
               Phương thức thanh toán:
@@ -48,13 +50,21 @@
                     </span>
             </p>
           </div>
-        </div>
+      <div class="order__wrapper">
+        <p>
+          Thời gian đặt hàng:
+          <span th:text="${#temporals.format(order.createdAt, 'dd/MM/yyyy HH:mm')}"></span>
+        </p>
+        <p>
+          Phí vận chuyển:
+          <span th:text="${#numbers.formatDecimal(order.shippingFee, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></span>
+        </p>
       </div>
     </div>
     <div class="order__total">
       <p>
         Tổng số tiền:
-        <span th:text="${order.total}"></span>
+        <span th:text="${#numbers.formatDecimal(order.total, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></span>
       </p>
     </div>
 
